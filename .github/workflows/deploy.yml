@@ -37,8 +37,8 @@ jobs:
       - name: Upload to Deno Deploy
         uses: denoland/deployctl@v1
         with:
-          project: "blogdeepresearch"
-          entrypoint: "server/entry.mjs"
+          project: "jhosscy-blogdeepres-29"
+          entrypoint: "dist/server/entry.mjs"
           root: "dist"
           
           
