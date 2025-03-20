@@ -1,44 +1,37 @@
-name: Deploy
+name: Deploy Astro Project to Deno Deploy
+
 on:
   push:
-    branches: main
+    branches: [ main ]
   pull_request:
-    branches: main
+    branches: [ main ]
 
 jobs:
   deploy:
-    name: Deploy
     runs-on: ubuntu-latest
-
     permissions:
-      id-token: write # Needed for auth with Deno Deploy
-      contents: read # Needed to clone the repository
+      id-token: write   # Para autenticación con Deno Deploy vía OIDC (si lo usas)
+      contents: read    # Para poder clonar el repositorio
 
     steps:
-      - name: Clone repository
+      - name: Checkout repository
         uses: actions/checkout@v4
 
-      - name: Install Deno
+      - name: Setup Deno
         uses: denoland/setup-deno@v2
         with:
-          deno-version: v2.x
+          deno-version: 2.2.4
 
-      - name: Install Node.js
-        uses: actions/setup-node@v4
-        with:
-          node-version: lts/*
+      - name: Install dependencies
+        run: deno install
 
-      - name: Install step
-        run: "npm install"
+      - name: Build project
+        run: deno task build
 
-      - name: Build step
-        run: "npm run build"
+      - name: Install deployctl
+        run: deno install -gArf jsr:@deno/deployctl
 
-      - name: Upload to Deno Deploy
-        uses: denoland/deployctl@v1
-        with:
-          project: "jhosscy-blogdeepres-29"
-          entrypoint: "dist/server/entry.mjs"
-          root: "dist"
-          
-          
+      - name: Deploy to Deno Deploy
+        env:
+          DENO_DEPLOY_TOKEN: ddp_kWJLs8X1qauwNiyr2nr3F7zaCQ4U3H24eB61
+        run: deployctl deploy --project=jhosscy-blogdeepres-29 ./dist/server/entry.mjs
