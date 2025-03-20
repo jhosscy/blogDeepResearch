@@ -1,0 +1,19 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import TableOfContents from '../../components/TableOfContents.astro';
+import { getEntry, render } from 'astro:content';
+
+const { slug } = Astro.params;
+
+const entry = await getEntry('blogs', slug);
+const { Content, headings } = await render(entry);
+---
+
+<Layout title={slug}>
+  <TableOfContents headings={headings} />
+  <article class="article-container">
+    <div class="article-content">
+      <Content />
+    </div>
+  </article>
+</Layout>

@@ -1,0 +1,24 @@
+---
+import Layout from '../layouts/Layout.astro';
+import Article from '../components/Article.astro';
+import { getCollection } from 'astro:content';
+const blogs = await getCollection('blogs');
+---
+
+<Layout title="Deep Research Blog">
+  <div class="blog-description">
+    <h2>Latest Research Findings</h2>
+  </div>
+
+  <!-- Blog Posts Grid -->
+  <div class="blog-posts">
+    {blogs.map(blog => (
+      <Article
+        title={blog.data.title}
+        description={blog.data.description}
+        date={blog.data.date}
+        id={blog.id}
+      />
+    ))}
+  </div>
+</Layout>
