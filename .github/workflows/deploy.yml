@@ -10,7 +10,7 @@ jobs:
   deploy:
     runs-on: ubuntu-latest
     permissions:
-      id-token: write   # Para autenticación con Deno Deploy vía OIDC (si lo usas)
+      id-token: write   # Para autenticaciÃ³n con Deno Deploy vÃ­a OIDC (si lo usas)
       contents: read    # Para poder clonar el repositorio
 
     steps:
