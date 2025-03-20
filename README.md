@@ -1,48 +1,64 @@
-# Astro Starter Kit: Basics
+# Deep Research Blog
 
-```sh
-deno create astro@latest -- --template basics
+Deep Research Blog is a content-focused website built with [Astro](https://astro.build) and using Deno as its JavaScript runtime. The project displays in-depth research articles written in Markdown.
+
+## Overview
+
+- **Markdown Posts:** Articles are stored in the `src/blogs` folder.
+- **Dynamic Pages:** Each blog post is rendered dynamically using the `[slug].astro` route.
+- **Modern Stack:** Built with Astro and Deno, it uses a clean layout, custom CSS, and interactive JavaScript for features like a table of contents.
+
+## Project Structure
+
+```plaintext
+.
+├── README.md
+├── astro.config.mjs
+├── package.json
+├── tsconfig.json
+├── deno.lock
+├── public
+└── src
+    ├── blogs
+    ├── components
+    ├── layouts
+    └── pages
 ```
 
-[![Open in StackBlitz](https://developer.stackblitz.com/img/open_in_stackblitz.svg)](https://stackblitz.com/github/withastro/astro/tree/latest/examples/basics)
-[![Open with CodeSandbox](https://assets.codesandbox.io/github/button-edit-lime.svg)](https://codesandbox.io/p/sandbox/github/withastro/astro/tree/latest/examples/basics)
-[![Open in GitHub Codespaces](https://github.com/codespaces/badge.svg)](https://codespaces.new/withastro/astro?devcontainer_path=.devcontainer/basics/devcontainer.json)
+## Requirements
 
-> 🧑‍🚀 **Seasoned astronaut?** Delete this file. Have fun!
+- [Deno](https://deno.land) must be installed.
 
-![just-the-basics](https://github.com/withastro/astro/assets/2244813/a0a5533c-a856-4198-8470-2d67b1d7c554)
+## Setup and Commands
 
-## 🚀 Project Structure
+No installation of Node modules is needed. Instead, install the project with Deno:
 
-Inside of your Astro project, you'll see the following folders and files:
-
-```text
-/
-├── public/
-│   └── favicon.svg
-├── src/
-│   ├── layouts/
-│   │   └── Layout.astro
-│   └── pages/
-│       └── index.astro
-└── package.json
+```bash
+deno install
 ```
 
-To learn more about the folder structure of an Astro project, refer to [our guide on project structure](https://docs.astro.build/en/basics/project-structure/).
+Use the following Deno tasks to work with the project:
 
-## 🧞 Commands
+- **Development:**  
+  ```bash
+  deno task dev
+  ```  
+  This runs the local development server.
 
-All commands are run from the root of the project, from a terminal:
+- **Build:**  
+  ```bash
+  deno task build
+  ```  
+  This builds the project for production.
 
-| Command                   | Action                                           |
-| :------------------------ | :----------------------------------------------- |
-| `deno install`             | Installs dependencies                            |
-| `deno dev`             | Starts local dev server at `localhost:4321`      |
-| `deno build`           | Build your production site to `./dist/`          |
-| `deno preview`         | Preview your build locally, before deploying     |
-| `deno astro ...`       | Run CLI commands like `astro add`, `astro check` |
-| `deno astro -- --help` | Get help using the Astro CLI                     |
+- **Preview:**  
+  ```bash
+  deno task preview
+  ```  
+  This previews the production build (the command runs the server with full permissions).
 
-## 👀 Want to learn more?
+## How It Works
 
-Feel free to check [our documentation](https://docs.astro.build) or jump into our [Discord server](https://astro.build/chat).
+- The **Layout** component (`src/layouts/Layout.astro`) sets up the header and overall page structure.
+- The **Home Page** (`src/pages/index.astro`) shows a grid of blog articles using the **Article** component.
+- The **Dynamic Blog Pages** (`src/pages/blog/[slug].astro`) load and render the Markdown content for each blog post along with a table of contents.
